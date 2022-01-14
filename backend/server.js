@@ -1,6 +1,7 @@
 // imports
 import express from "express";
 import cors from "cors";
+import { findPrimes, getMedian } from "./helpersFunctions.js";
 
 // initialize express app
 const app = express();
@@ -14,8 +15,17 @@ app.use(express.json());
 app.get("/", (req, res) => res.status(200).send("Hello"));
 
 //get projects
-app.get("/get/calculate", (req, res) => {
-  res.status(200).send("Answer");
+app.post("/post/calculate", (req, res) => {
+  const num = req.body.num;
+  if (typeof num !== "number") {
+    res.status(404).send("Enter a valid number");
+  } else if (num < 0) {
+    res.status(404).send("Number should be above 0");
+  } else {
+    const primes = findPrimes(num);
+    const middle = getMedian(primes);
+    res.status(200).send(middle);
+  }
 });
 
 // Other routes

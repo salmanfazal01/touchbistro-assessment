@@ -4,13 +4,13 @@ const instance = axios.create({
   baseURL: "http://localhost:9000",
 });
 
-export const calculateAnswer = (callback) => {
-  instance
-    .get("/get/calculate")
+export const calculateAnswer = async (num) => {
+  return instance
+    .post("/post/calculate", { num })
     .then((res) => {
-      callback && callback(res?.data);
+      return res;
     })
     .catch((err) => {
-      console.log(err);
+      return err.response;
     });
 };
