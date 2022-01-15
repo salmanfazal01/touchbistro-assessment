@@ -70,6 +70,7 @@ function App() {
           value={value}
           onChange={handleChange}
           className="input"
+          data-testid="add-number-input"
         />
       </div>
     </div>
