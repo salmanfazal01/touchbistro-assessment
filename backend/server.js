@@ -21,6 +21,8 @@ app.post("/post/calculate", (req, res) => {
     res.status(404).send("Enter a valid number");
   } else if (num < 0) {
     res.status(404).send("Number should be above 0");
+  } else if (num > 999999) {
+    res.status(404).send("Number should under 999,999");
   } else {
     const primes = findPrimes(num);
     const middle = getMedian(primes);

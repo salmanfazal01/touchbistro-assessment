@@ -70,7 +70,6 @@ function App() {
           value={value}
           onChange={handleChange}
           className="input"
-          max={100000}
         />
       </div>
     </div>
